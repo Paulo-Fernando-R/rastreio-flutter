@@ -1,0 +1,50 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "emulador",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
+        },
+
+        {
+            "name": "celular cabo",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "RQ8N30902DM"
+        },
+
+        {
+            "name": "subsystem",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "172.23.20.11:5555"
+        },
+
+        {
+            "name": "celular wifi",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "192.168.0.2:5555"
+        },
+       
+    ],
+
+    "compounds": [
+        {
+            "name": "celular + subsystem",
+            "configurations": [
+                "celular wifi",
+                "subsystem"
+            ],
+            
+            
+        }
+    ], 
+
+    
+}
