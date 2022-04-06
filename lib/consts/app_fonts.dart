@@ -18,6 +18,13 @@ class AppFonts
     letterSpacing: 0
   );
 
+   static TextStyle detailsInfo = GoogleFonts.roboto(
+    color: AppColors.secondaryLightText,
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0
+  );
+
    static TextStyle textField = GoogleFonts.roboto(
      color: AppColors.primaryDarkText,
      fontWeight: FontWeight.w600
@@ -43,6 +50,11 @@ class AppFonts
    static TextStyle cardState = GoogleFonts.roboto(
     color: AppColors.primaryDarkText,
     fontSize: 17
+  );
+
+     static TextStyle cardStateSecondary = GoogleFonts.roboto(
+    color: AppColors.secondary,
+    fontSize: 15
   );
 
   static TextStyle secondaryColorTitle = GoogleFonts.roboto(

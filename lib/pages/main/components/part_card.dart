@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:rastreio/consts/app_colors.dart';
 import 'package:rastreio/consts/app_fonts.dart';
+import 'package:rastreio/pages/details/details_page.dart';
 
 class PartCard extends StatefulWidget {
   const PartCard({ Key? key }) : super(key: key);
@@ -20,7 +21,7 @@ class _PartCardState extends State<PartCard> {
       
       top: 20,
       left: 10,
-      bottom: 10,
+      bottom: 0,
       right: 10,
         
     ),
@@ -29,12 +30,19 @@ class _PartCardState extends State<PartCard> {
           borderRadius: BorderRadius.circular(30),
           splashColor: AppColors.secondary.withOpacity(0.2),
           onTap: () {
-            print('enoix');
+            Navigator.push
+            (
+              context, 
+              MaterialPageRoute
+              (
+                builder: (context) => const DetailsPage()
+              )
+            );
           },
         child: Ink(
           
           height: 130,
-          width: MediaQuery.of(context).size.width-50,
+          width: double.infinity - 50,
           decoration: BoxDecoration
           (
             color: AppColors.primaryLightText,

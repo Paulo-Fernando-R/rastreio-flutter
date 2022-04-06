@@ -84,15 +84,55 @@ class _MainPageState extends State<MainPage> {
        
       ),
 
+      /*floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButton: FloatingActionButton
       (
+        isExtended: true,
         child: Icon(Icons.add),
         backgroundColor: AppColors.secondary,
         splashColor: AppColors.primary,
+        elevation: 5,
         onPressed: () {
           
         },
       ),
+
+      bottomNavigationBar: SizedBox
+      (
+        height: 60,
+        child: BottomAppBar
+        (
+          shape: CircularNotchedRectangle(),
+          color: AppColors.primaryLightText,
+          notchMargin: 7,
+          elevation: 10,
+          child: Row
+          (
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: 
+            [
+              IconButton(onPressed: () {
+                
+              }, icon: Icon
+              (
+                Icons.archive_rounded), 
+                color: AppColors.primaryDarkText,
+                iconSize: 30,
+              ),
+      
+              IconButton(onPressed: () {
+                
+              }, icon: Icon
+              (
+                Icons.info_rounded), 
+                color: AppColors.primaryDarkText,
+                iconSize: 30,
+              )
+            ],
+          ),
+        ),
+      ),*/
 
 
 

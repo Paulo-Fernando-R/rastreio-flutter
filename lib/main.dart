@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rastreio/my_app.dart';
+import 'package:rastreio/pages/details/details_page.dart';
+import 'package:rastreio/pages/main/main_page.dart';
 import 'package:rastreio/repositories/order_repository.dart';
 
  void main(List<String> args) {
