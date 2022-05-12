@@ -9,5 +9,6 @@ class AppColors
   static Color secondaryLightText = Color(0xffEFEFEF);
   static Color primaryDarkText = Color(0xff666666);
   static Color backGray = Color(0xffEBEBEB);
+  static Color formBackground = Color(0xfff1ebf7);
 
 }

@@ -21,37 +21,81 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold
     (
-      appBar: PreferredSize
+      /*appBar: PreferredSize
       (
         preferredSize: Size.fromHeight(200),
         child: Appbar2(),
-      ),
+      ),*/
 
       body: Container
       (
-        child: Consumer<OrderRepository>
+
+         decoration: BoxDecoration
         (
-          builder: (context, orders, child)
-          {
-            return orders.OrderList.isEmpty
-            ? ListTile
+          gradient: LinearGradient
+        (
+          colors: 
+          [
+            Color(0xff2d5ab5),
+            AppColors.secondary
+          ],
+          //transform: GradientRotation(7*pi/4),
+          //stops: [0, 0.7],
+          tileMode: TileMode.clamp
+          
+        )
+        ),
+
+        child: Column(
+          children: 
+          [
+            Expanded
             (
-              leading: Icon(Icons.star),
-              title: Text
+              flex: 1,
+              child: Appbar2(),
+            ),
+            Expanded
+            (
+              flex: 3,
+              child: Container
               (
-                'Nada aqui ainda',
-                
+                 decoration: BoxDecoration
+                (
+                  borderRadius: BorderRadius.only
+                  (
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
+                  ),
+                  color: AppColors.primaryLightText
+                ),
+
+                child: Consumer<OrderRepository>
+                (
+                  builder: (context, orders, child)
+                  {
+                    return orders.OrderList.isEmpty
+                    ? ListTile
+                    (
+                      leading: Icon(Icons.star),
+                      title: Text
+                      (
+                        'Nada aqui ainda',
+                        
+                      ),
+                    )
+                    : ListView.builder
+                    (
+                      itemCount: orders.OrderList.length, 
+                      itemBuilder: (_, index)
+                      {
+                        return DetailsCard();
+                      },
+                    );
+                  },
+                ),
               ),
-            )
-            : ListView.builder
-            (
-              itemCount: orders.OrderList.length, 
-              itemBuilder: (_, index)
-              {
-                return DetailsCard();
-              },
-            );
-          },
+            ),
+          ],
         )
        
       ),

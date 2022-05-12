@@ -29,6 +29,7 @@ class _PartCardState extends State<PartCard> {
         (
           borderRadius: BorderRadius.circular(30),
           splashColor: AppColors.secondary.withOpacity(0.2),
+          
           onTap: () {
             Navigator.push
             (

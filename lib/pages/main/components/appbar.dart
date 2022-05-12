@@ -22,7 +22,7 @@ class _AppbarState extends State<Appbar> {
         borderRadius: BorderRadius.only
         (
           bottomLeft: Radius.circular(0),
-          bottomRight: Radius.circular(70)
+          bottomRight: Radius.circular(0)
         ),
         gradient: LinearGradient
         (

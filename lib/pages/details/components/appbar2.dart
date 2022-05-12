@@ -35,7 +35,7 @@ class _Appbar2State extends State<Appbar2> {
               tileMode: TileMode.clamp
             ),
 
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(45))
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(0))
           ),
           //coluna principal
           child: Column

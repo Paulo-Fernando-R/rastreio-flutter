@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:rastreio/api/track_api.dart';
 import 'package:rastreio/consts/app_colors.dart';
 import 'package:rastreio/consts/app_fonts.dart';
+import 'package:rastreio/dialogs/add_edit_dialog.dart';
 import 'package:rastreio/pages/main/components/appbar.dart';
 import 'package:rastreio/pages/main/components/part_card.dart';
 import 'package:rastreio/repositories/order_repository.dart';
@@ -44,8 +45,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       
+      
 
-      appBar: PreferredSize
+      /*appBar: PreferredSize
       (
         preferredSize: Size.fromHeight
         (
@@ -53,35 +55,98 @@ class _MainPageState extends State<MainPage> {
         ), 
           child: Appbar(),
         
-      ),
-
+      ),*/
+      //fundo de tuso
       body: Container
       (
-        child: Consumer<OrderRepository>
+        decoration: BoxDecoration
         (
-          builder: (context, orders, child)
-          {
-            return orders.OrderList.isEmpty
-            ? ListTile
-            (
-              leading: Icon(Icons.star),
-              title: Text
-              (
-                'Nada aqui ainda',
-                
-              ),
-            )
-            : ListView.builder
-            (
-              itemCount: orders.OrderList.length, 
-              itemBuilder: (_, index)
-              {
-                return PartCard();
-              },
-            );
-          },
+          gradient: LinearGradient
+        (
+          colors: 
+          [
+            Color(0xff2d5ab5),
+            AppColors.secondary
+          ],
+          //transform: GradientRotation(7*pi/4),
+          //stops: [0, 0.7],
+          tileMode: TileMode.clamp
+          
         )
-       
+        ),
+        //coluna pricipal
+        child: Column(
+          children: 
+          [
+            //appbar
+            Expanded
+            (
+              flex: 1,
+              child: Appbar()
+            ),
+
+            //corpo
+            Expanded
+            (
+              flex: 2,
+              //fundo corpo
+              child: Container
+              (
+                decoration: BoxDecoration
+                (
+                  borderRadius: BorderRadius.only
+                  (
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
+                  ),
+                  color: AppColors.primaryLightText
+                ),
+                child: Consumer<OrderRepository>
+                (
+                  builder: (context, orders, child)
+                  {
+                    return orders.OrderList.isEmpty
+                    ? ListTile
+                    (
+                      leading: Icon(Icons.star),
+                      title: Text
+                      (
+                        'Nada aqui ainda',
+                        
+                      ),
+                    )
+                    : ListView.builder
+                    (
+                      /*scrollDirection: Axis.vertical,
+                      shrinkWrap: true,*/
+                      itemCount: orders.OrderList.length, 
+                      itemBuilder: (_, index)
+                      {
+                        return PartCard();
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton
+      (
+        onPressed: () => {
+          showDialog
+          (
+            context: context, 
+            builder: (BuildContext context)
+            {
+              return AddEditDialog();
+            }
+          )
+        },
+        backgroundColor: AppColors.secondary,
+        child: Icon(Icons.add),
       ),
 
       /*floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -104,7 +169,7 @@ class _MainPageState extends State<MainPage> {
         child: BottomAppBar
         (
           shape: CircularNotchedRectangle(),
-          color: AppColors.primaryLightText,
+          color: AppColors.primary,
           notchMargin: 7,
           elevation: 10,
           child: Row
@@ -120,7 +185,7 @@ class _MainPageState extends State<MainPage> {
                 color: AppColors.primaryDarkText,
                 iconSize: 30,
               ),
-      
+              
               IconButton(onPressed: () {
                 
               }, icon: Icon

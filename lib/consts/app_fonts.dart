@@ -63,6 +63,17 @@ class AppFonts
     fontWeight: FontWeight.w600
   );
 
+  static TextStyle dialogTitle = GoogleFonts.roboto(
+    color: AppColors.primaryDarkText,
+    decoration: TextDecoration.none,
+    fontWeight: FontWeight.w700,
+    fontSize: 28
+  );
+
+  static TextStyle dialogButton = GoogleFonts.roboto(
+    fontSize: 20
+  );
+
   
 
 }
