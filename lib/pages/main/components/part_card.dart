@@ -6,7 +6,18 @@ import 'package:rastreio/consts/app_fonts.dart';
 import 'package:rastreio/pages/details/details_page.dart';
 
 class PartCard extends StatefulWidget {
-  const PartCard({ Key? key }) : super(key: key);
+
+  final List data;
+  final int index ;
+  final String name;
+
+  const PartCard
+  ({ 
+    required this.data,
+    required this.index,
+    required this.name,
+    Key? key 
+  }) : super(key: key);
 
   @override
   State<PartCard> createState() => _PartCardState();
@@ -36,7 +47,7 @@ class _PartCardState extends State<PartCard> {
               context, 
               MaterialPageRoute
               (
-                builder: (context) => const DetailsPage()
+                builder: (context) =>  DetailsPage(index: widget.index)
               )
             );
           },
@@ -76,25 +87,30 @@ class _PartCardState extends State<PartCard> {
       
               Padding(
                 padding: const EdgeInsets.only(left: 50),
-                child: Column
+                child: SizedBox
                 (
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: 
-                  [
-                    Text
-                    (
-                      'Nome da enomenda',
-                      style: AppFonts.cardMain,
-                    ),
+                  width: (MediaQuery.of(context).size.width-50)/3*2,
+                  child: Column
+                  (
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: 
+                    [
+                      Text
+                      (
+                        widget.name,//'Nome da enomenda',
+                        style: AppFonts.cardMain,
+                      ),
       
-                    SizedBox(height: 7,),
+                      SizedBox(height: 7,),
       
-                    Text
-                    (
-                      'Estado da encomenda',
-                      style: AppFonts.cardState
-                    )
-                  ],
+                      Text
+                      (
+                         widget.data.first['status'],//'Estado da encomenda',
+                        style: AppFonts.cardState,
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
                 ),
               )
             ],

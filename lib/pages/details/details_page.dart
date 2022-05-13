@@ -10,7 +10,8 @@ import 'package:rastreio/pages/main/components/part_card.dart';
 import 'package:rastreio/repositories/order_repository.dart';
 
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({ Key? key }) : super(key: key);
+  final int index;
+  const DetailsPage({required this.index, Key? key }) : super(key: key);
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -73,7 +74,8 @@ class _DetailsPageState extends State<DetailsPage> {
                 (
                   builder: (context, orders, child)
                   {
-                    return orders.OrderList.isEmpty
+                    
+                    return orders.OrderList[0].status.isEmpty
                     ? ListTile
                     (
                       leading: Icon(Icons.star),
@@ -84,11 +86,11 @@ class _DetailsPageState extends State<DetailsPage> {
                       ),
                     )
                     : ListView.builder
-                    (
-                      itemCount: orders.OrderList.length, 
+                    (//trocar por index passado por parametro
+                      itemCount: orders.OrderList[widget.index].status.length, 
                       itemBuilder: (_, index)
                       {
-                        return DetailsCard();
+                        return DetailsCard(status: orders.OrderList[0].status[index],);
                       },
                     );
                   },

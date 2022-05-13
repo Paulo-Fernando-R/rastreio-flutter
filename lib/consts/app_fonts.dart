@@ -42,7 +42,7 @@ class AppFonts
   );
 
   static TextStyle cardMain = GoogleFonts.roboto(
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: FontWeight.w600,
     color: AppColors.primary
   );

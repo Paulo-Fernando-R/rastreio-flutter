@@ -95,7 +95,7 @@ class _AppbarState extends State<Appbar> {
                       
                   SizedBox
                   (//pesquisa
-                    height: 30,
+                    height: 35,
                     width: MediaQuery.of(context).size.width-60,
                     child: TextField
                     (

@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _MainPageState extends State<MainPage> {
 
     while(trackResult == null && repeats < 10)
     {
-      trackResult = await TrackApi.track('AA123456789BR');
+      trackResult = await TrackApi.track('QJ180013785BR');
 
       if(trackResult == null)
       {
@@ -38,7 +39,10 @@ class _MainPageState extends State<MainPage> {
       repeats++;
     }
     
-    print(trackResult['codigo']);
+    //print(trackResult['eventos']);
+    List<dynamic> data = trackResult['eventos'];
+    data.forEach((element) {print(element.toString());});
+    
   }
 
   @override
@@ -57,79 +61,93 @@ class _MainPageState extends State<MainPage> {
         
       ),*/
       //fundo de tuso
-      body: Container
+      body: RefreshIndicator
       (
-        decoration: BoxDecoration
-        (
-          gradient: LinearGradient
-        (
-          colors: 
-          [
-            Color(0xff2d5ab5),
-            AppColors.secondary
-          ],
-          //transform: GradientRotation(7*pi/4),
-          //stops: [0, 0.7],
-          tileMode: TileMode.clamp
+        onRefresh: () async {
           
-        )
-        ),
-        //coluna pricipal
-        child: Column(
-          children: 
-          [
-            //appbar
-            Expanded
-            (
-              flex: 1,
-              child: Appbar()
-            ),
-
-            //corpo
-            Expanded
-            (
-              flex: 2,
-              //fundo corpo
-              child: Container
+        },
+        child: Container
+        (
+          decoration: BoxDecoration
+          (
+            gradient: LinearGradient
+          (
+            colors: 
+            [
+              Color(0xff2d5ab5),
+              AppColors.secondary
+            ],
+            //transform: GradientRotation(7*pi/4),
+            //stops: [0, 0.7],
+            tileMode: TileMode.clamp
+            
+          )
+          ),
+          //coluna pricipal
+          child: Column(
+            children: 
+            [
+              //appbar
+              Expanded
               (
-                decoration: BoxDecoration
+                flex: 1,
+                child: Appbar()
+              ),
+      
+              //corpo
+              Expanded
+              (
+                flex: 2,
+                //fundo corpo
+                child: Container
                 (
-                  borderRadius: BorderRadius.only
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration
                   (
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30)
+                    borderRadius: BorderRadius.only
+                    (
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30)
+                    ),
+                    color: AppColors.primaryLightText
                   ),
-                  color: AppColors.primaryLightText
-                ),
-                child: Consumer<OrderRepository>
-                (
-                  builder: (context, orders, child)
-                  {
-                    return orders.OrderList.isEmpty
-                    ? ListTile
-                    (
-                      leading: Icon(Icons.star),
-                      title: Text
+                  child: Consumer<OrderRepository>
+                  (
+                    builder: (context, orders, child)
+                    {
+                      return orders.OrderList.isEmpty
+                      ? Container
                       (
-                        'Nada aqui ainda',
-                        
-                      ),
-                    )
-                    : ListView.builder
-                    (
-                      /*scrollDirection: Axis.vertical,
-                      shrinkWrap: true,*/
-                      itemCount: orders.OrderList.length, 
-                      itemBuilder: (_, index)
-                      {
-                        return PartCard();
-                      },
-                    );
-                  },
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator
+                        (
+                           color: AppColors.primary,
+                           
+                           
+                        ),
+                      )
+                      : ListView.builder
+                      (
+                        /*scrollDirection: Axis.vertical,
+                        shrinkWrap: true,*/
+                        itemCount: orders.OrderList.length, 
+                        itemBuilder: (_, index)
+                        {
+                          return PartCard
+                          (
+                            name: orders.OrderList[index].name,
+                            data: orders.OrderList[index].status,
+                            index: index,);
+                        },
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -144,6 +162,7 @@ class _MainPageState extends State<MainPage> {
               return AddEditDialog();
             }
           )
+       
         },
         backgroundColor: AppColors.secondary,
         child: Icon(Icons.add),

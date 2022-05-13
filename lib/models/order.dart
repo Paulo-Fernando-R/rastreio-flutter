@@ -1,11 +1,13 @@
 class Order
 {
-  String nome;
-  String estado;
+  String name;
+  //String estado;
+  List<dynamic> status;
   
   Order
   ({
-    required this.nome,
-    required this.estado
+    required this.name,
+    //required this.estado
+    required this.status
   });
 }
